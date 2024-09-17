@@ -1,21 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import malApiClient from './src/api/malApiClient'
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import NavBar from './src/components/NavBar';  // Importing the BottomTabNavigator component
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Change</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <NavBar />
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
