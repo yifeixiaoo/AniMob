@@ -1,8 +1,5 @@
 import axios from 'axios';
-import dotenv from 'dotenv';
-
-const environment = process.env.NODE_ENV || 'local';
-dotenv.config({ path: `environment/${environment}.env` });
+import { MAL_USERNAME } from '@env';
 
 const malApiClient = axios.create({
   baseURL: 'https://api.myanimelist.net/v2/auth/token',
