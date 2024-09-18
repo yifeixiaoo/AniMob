@@ -11,7 +11,6 @@ const HomeScreen = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Get the current year and season
   const { year, season } = getCurrentYearAndSeason();
 
   useEffect(() => {
