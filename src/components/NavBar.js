@@ -25,6 +25,7 @@ const NavBar = () => {
           elevation: 5,
         },
         tabBarShowLabel: false,
+        headerShown: true, // Ensure no header is shown if not needed
       }}
     >
       <Tab.Screen
@@ -50,4 +51,3 @@ const NavBar = () => {
 };
 
 export default NavBar;
-

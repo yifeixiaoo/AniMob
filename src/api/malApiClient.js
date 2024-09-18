@@ -16,20 +16,44 @@ export const getMalAccessToken = async () => {
       body: formData,
     });
 
-    // Await the response.json() to correctly parse the response body
     const data = await response.json();
     const { access_token } = data;
 
-    // Save the token in AsyncStorage
     await AsyncStorage.setItem('token', access_token);
     
     return access_token;
   } catch (error) {
-    // Log detailed error information
     console.error('Error fetching access token:', error.message || error);
     throw error;
   }
 };
 
-export default malApiURI;
+const fetchWithToken = async (endpoint, options = {}) => {
+  try {
+    let token = await AsyncStorage.getItem('token');
+    if (!token) {
+      token = await getMalAccessToken();
+    }
+
+    const response = await fetch(`${malApiURI}${endpoint}`, {
+      ...options,
+      headers: {
+        ...options.headers,
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error('Error making API request:', error.message || error);
+    throw error;
+  }
+};
+
+export default fetchWithToken;
+
 
