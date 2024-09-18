@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Ionicons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 import HomeScreen from '../screens/HomeScreen';
 import SearchScreen from '../screens/SearchScreen';
 import { HeaderTitle } from '../config';
@@ -39,7 +39,7 @@ const NavBar = () => {
         options={{
           headerTitle: HeaderTitle,
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home" color={color} size={size} />
+            <Feather name="home" color={color} size={size} />
           ),
         }}
       />
@@ -49,7 +49,7 @@ const NavBar = () => {
         options={{
           headerTitle: HeaderTitle,
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="search" color={color} size={size} />
+            <Feather name="search" color={color} size={size} />
           ),
         }}
       />
@@ -58,4 +58,3 @@ const NavBar = () => {
 };
 
 export default NavBar;
-

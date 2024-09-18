@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, FlatList, Image, ActivityIndicator } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 import tw from 'twrnc';
 import fetchWithToken from './../api/malApiClient';
 
@@ -54,7 +54,7 @@ const SearchScreen = () => {
       <View style={tw`absolute top-3 left-5 right-5 z-10`}>
         <View style={tw`bg-white shadow-lg rounded-3xl p-1`}>
           <View style={tw`flex-row items-center bg-white rounded-3xl p-2`}>
-            <Ionicons name="search" size={24} color="gray" />
+          <Feather name="search" color={"gray"} size={24} />
             <TextInput
               style={tw`ml-3 flex-1 text-base text-gray-800`}
               placeholder="Search anime..."
