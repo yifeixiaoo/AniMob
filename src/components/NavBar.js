@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import HomeScreen from '../screens/HomeScreen';
 import SearchScreen from '../screens/SearchScreen';
+import { HeaderTitle } from '../config';
 
 const Tab = createBottomTabNavigator();
 
@@ -25,13 +26,18 @@ const NavBar = () => {
           elevation: 5,
         },
         tabBarShowLabel: false,
-        headerShown: true, // Ensure no header is shown if not needed
+        headerTitleAlign: 'center',
+        headerTitleStyle: {
+          fontSize: 24,
+          fontWeight: 'bold',
+        },
       }}
     >
       <Tab.Screen
         name="Home"
         component={HomeScreen}
         options={{
+          headerTitle: HeaderTitle,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home" color={color} size={size} />
           ),
@@ -41,6 +47,7 @@ const NavBar = () => {
         name="Search"
         component={SearchScreen}
         options={{
+          headerTitle: HeaderTitle,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="search" color={color} size={size} />
           ),
@@ -51,3 +58,4 @@ const NavBar = () => {
 };
 
 export default NavBar;
+

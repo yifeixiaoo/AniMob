@@ -44,7 +44,6 @@ const SearchScreen = () => {
         />
         <View style={tw`ml-4 flex-1`}>
           <Text style={tw`text-lg font-semibold mb-2`}>{item.node.title}</Text>
-          <Text style={tw`text-sm text-gray-600`}>Rank: {item.node.rank}</Text>
         </View>
       </View>
     </View>
@@ -52,8 +51,9 @@ const SearchScreen = () => {
 
   return (
     <View style={tw`flex-1 bg-gray-100`}>
-      <View style={tw`w-full p-4`}>
-        <View style={tw`bg-white shadow-lg rounded-3xl mx-4 p-3`}>
+      {/* Floating Search Bar */}
+      <View style={tw`absolute top-3 left-5 right-5 z-10`}>
+        <View style={tw`bg-white shadow-lg rounded-3xl p-3`}>
           <View style={tw`flex-row items-center bg-gray-100 rounded-3xl p-2`}>
             <Ionicons name="search" size={24} color="gray" />
             <TextInput
@@ -78,10 +78,11 @@ const SearchScreen = () => {
             keyExtractor={(item) => item.node.id.toString()}
             renderItem={renderAnimeCard}
             contentContainerStyle={tw`pt-4`}
-            style={tw`pt-8`} // Adding padding top to avoid overlap with search bar
+            style={tw`pt-19`} // Adding padding top to avoid overlap with search bar
           />
         ) : (
           <View style={tw`flex-1 justify-center items-center`}>
+            {/* Make sure this is wrapped in a Text component */}
             <Text style={tw`text-lg text-gray-600`}>No results found.</Text>
           </View>
         )}
