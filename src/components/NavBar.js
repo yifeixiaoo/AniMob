@@ -8,7 +8,25 @@ const Tab = createBottomTabNavigator();
 
 const NavBar = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        tabBarStyle: {
+          position: 'absolute',
+          bottom: 20,
+          left: 20,
+          right: 20,
+          borderRadius: 30,
+          height: 60,
+          backgroundColor: 'white',
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: 10 },
+          shadowOpacity: 0.1,
+          shadowRadius: 3.5,
+          elevation: 5,
+        },
+        tabBarShowLabel: false,
+      }}
+    >
       <Tab.Screen
         name="Home"
         component={HomeScreen}
@@ -32,3 +50,4 @@ const NavBar = () => {
 };
 
 export default NavBar;
+

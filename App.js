@@ -1,11 +1,14 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import NavBar from './src/components/NavBar';  // Importing the BottomTabNavigator component
+import NavBar from './src/components/NavBar';
+import { AuthProvider } from './src/components/contexts/AuthContext';
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <NavBar />
-    </NavigationContainer>
+    <AuthProvider>
+      <NavigationContainer>
+        <NavBar />
+      </NavigationContainer>
+    </AuthProvider>
   );
 }

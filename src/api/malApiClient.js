@@ -1,48 +1,35 @@
-import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { MAL_CLIENT_ID, MAL_USERNAME, MAL_PASSWORD } from '@env';
 
-const malApiClient = axios.create({
-  baseURL: 'https://myanimelist.net/v2',
-  timeout: 10000,
-  headers: {
-    'Content-Type': 'application/x-www-form-urlencoded',
-  },
-});
+const malApiURI = 'https://api.myanimelist.net/v2';
 
 export const getMalAccessToken = async () => {
-  const body = new URLSearchParams({
-    grant_type: 'password',
-    client_id: MAL_CLIENT_ID,
-    username: MAL_USERNAME,
-    password: MAL_PASSWORD,
-  });
+  const formData = new FormData();
+  formData.append('grant_type', 'password');
+  formData.append('client_id', MAL_CLIENT_ID);
+  formData.append('username', MAL_USERNAME);
+  formData.append('password', MAL_PASSWORD);
 
   try {
-    const response = await malApiClient.post('/auth/token', body.toString());
-    const { access_token } = response.data;
+    const response = await fetch(malApiURI + '/auth/token', {
+      method: 'POST',
+      body: formData,
+    });
+
+    // Await the response.json() to correctly parse the response body
+    const data = await response.json();
+    const { access_token } = data;
+
+    // Save the token in AsyncStorage
     await AsyncStorage.setItem('token', access_token);
+    
     return access_token;
   } catch (error) {
-    console.error('Error fetching access token:', error);
+    // Log detailed error information
+    console.error('Error fetching access token:', error.message || error);
     throw error;
   }
 };
 
-malApiClient.interceptors.request.use(async config => {
-  let token = await AsyncStorage.getItem('token');
+export default malApiURI;
 
-  if (!token) {
-    token = await getMalAccessToken();
-  }
-
-  if (token) {
-    config.headers['Authorization'] = `Bearer ${token}`;
-  }
-
-  return config;
-}, error => {
-  return Promise.reject(error);
-});
-
-export default malApiClient;
