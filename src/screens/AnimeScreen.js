@@ -98,7 +98,7 @@ const AnimeScreen = ({ route }) => {
                                     numberOfLines={1}
                                     ellipsizeMode="tail"
                                 >
-                                    {animeDetails.mean + "/10"|| 'N/A'}
+                                    {animeDetails.mean + "/10" || 'N/A'}
                                 </Text>
                                 <Text
                                     style={tw`text-base text-gray-800 mb-1`}
@@ -119,33 +119,31 @@ const AnimeScreen = ({ route }) => {
 
                         {/* Alternative Titles Section */}
 
-
-
                         <View style={tw`mt-4`}>
                             <Text style={tw`text-base font-semibold text-gray-600 mb-4`}>Synonyms:</Text>
                             {alternative_titles && (
-                            <ScrollView horizontal showsHorizontalScrollIndicator={false} style={tw``}>
-                                {alternative_titles.synonyms?.map((synonym, index) => (
-                                    <View key={index} style={tw`bg-green-200 rounded-full px-3 py-1 mr-2`}>
-                                        <Text style={tw`text-base font-semibold text-green-800`}>{formatString(synonym)}</Text>
-                                    </View>
-                                ))}
-                                {alternative_titles.en && (
-                                    <View style={tw`bg-red-200 rounded-full px-3 py-1 mr-2`}>
-                                        <Text style={tw`text-base font-semibold text-red-800`}>{formatString(alternative_titles.en)}</Text>
-                                    </View>
-                                )}
-                                {alternative_titles.ja && (
-                                    <View style={tw`bg-purple-200 rounded-full px-3 py-1 mr-2`}>
-                                        <Text style={tw`text-base font-semibold text-purple-800`}>{alternative_titles.ja}</Text>
-                                    </View>
-                                )}
-                            </ScrollView>
-                        )}
+                                <ScrollView horizontal showsHorizontalScrollIndicator={false} style={tw``}>
+                                    {alternative_titles.synonyms?.map((synonym, index) => (
+                                        <View key={index} style={tw`bg-green-200 rounded-full px-3 py-1 mr-2`}>
+                                            <Text style={tw`text-base font-semibold text-green-800`}>{formatString(synonym)}</Text>
+                                        </View>
+                                    ))}
+                                    {alternative_titles.en && (
+                                        <View style={tw`bg-red-200 rounded-full px-3 py-1 mr-2`}>
+                                            <Text style={tw`text-base font-semibold text-red-800`}>{formatString(alternative_titles.en)}</Text>
+                                        </View>
+                                    )}
+                                    {alternative_titles.ja && (
+                                        <View style={tw`bg-purple-200 rounded-full px-3 py-1 mr-2`}>
+                                            <Text style={tw`text-base font-semibold text-purple-800`}>{alternative_titles.ja}</Text>
+                                        </View>
+                                    )}
+                                </ScrollView>
+                            )}
                         </View>
-                        
 
                         {/* Description Section */}
+
                         <View style={tw`mt-4`}>
                             <Text style={tw`text-base font-semibold text-gray-600 mb-2`}>Description:</Text>
                             <Text style={tw`text-base text-gray-800`}>
@@ -155,6 +153,7 @@ const AnimeScreen = ({ route }) => {
                     </View>
 
                     {/* Full-Screen Image Modal */}
+
                     <Modal
                         visible={modalVisible}
                         transparent={true}

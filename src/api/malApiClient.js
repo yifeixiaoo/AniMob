@@ -20,7 +20,7 @@ export const getMalAccessToken = async () => {
     const { access_token } = data;
 
     await AsyncStorage.setItem('token', access_token);
-    
+
     return access_token;
   } catch (error) {
     console.error('Error fetching access token:', error.message || error);

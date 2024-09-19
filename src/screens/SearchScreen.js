@@ -40,16 +40,16 @@ const SearchScreen = () => {
 
   const renderAnimeCard = ({ item }) => (
     <View style={tw`w-11/12 bg-white shadow-md rounded-lg p-4 mb-4 mx-auto`}>
-            <TouchableOpacity onPress={() => navigation.navigate('AnimeScreen', { animeId: item.node.id, animeTitle: item.node.title })}>
-      <View style={tw`flex-row items-center`}>
-        <Image
-          source={{ uri: item.node.main_picture.medium }}
-          style={tw`w-24 h-32 rounded-lg`}
-        />
-        <View style={tw`ml-4 flex-1`}>
-          <Text style={tw`text-lg font-semibold mb-2`}>{item.node.title}</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('AnimeScreen', { animeId: item.node.id, animeTitle: item.node.title })}>
+        <View style={tw`flex-row items-center`}>
+          <Image
+            source={{ uri: item.node.main_picture.medium }}
+            style={tw`w-24 h-32 rounded-lg`}
+          />
+          <View style={tw`ml-4 flex-1`}>
+            <Text style={tw`text-lg font-semibold mb-2`}>{item.node.title}</Text>
+          </View>
         </View>
-      </View>
       </TouchableOpacity>
     </View>
   );
