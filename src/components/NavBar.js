@@ -71,13 +71,14 @@ const NavBar = () => {
       <Stack.Screen
         name="AnimeScreen"
         component={AnimeScreen}
-        options={{
-          headerTitle: 'Anime Details',
+        options={({ route }) => ({
+          headerTitle: route.params?.animeTitle || 'Anime Details',
           headerBackTitle: 'Back',
-        }}
+        })}
       />
     </Stack.Navigator>
   );
 };
+
 
 export default NavBar;

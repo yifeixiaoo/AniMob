@@ -47,7 +47,8 @@ const HomeScreen = () => {
 
   const renderAnimeCard = ({ item }) => (
     <View style={tw`w-28 px-2 py-1 mr-3`}>
-      <TouchableOpacity onPress={() => navigation.navigate('AnimeScreen', { animeId: item.node.id })}>
+      <TouchableOpacity onPress={() => navigation.navigate('AnimeScreen', { animeId: item.node.id, animeTitle: item.node.title })}>
+
         <Image
           source={{ uri: item.node.main_picture.medium }}
           style={tw`w-24 h-36 rounded-lg`}
