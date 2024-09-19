@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Image, FlatList, ActivityIndicator, ScrollView } from 'react-native';
+import { View, Text, Image, FlatList, ActivityIndicator, ScrollView, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import tw from 'twrnc';
 import fetchWithToken from './../api/malApiClient';
-import { getCurrentYearAndSeason } from './../config'; // Import the function
+import { getCurrentYearAndSeason } from './../config';
 
 const HomeScreen = () => {
-  const [topAnime, setTopAnime] = useState([]);
+  const [mostWatched, setMostWatched] = useState([]);
+  const [topRated, setTopRated] = useState([]);
   const [topMovies, setTopMovies] = useState([]);
   const [seasonalAnime, setSeasonalAnime] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
@@ -16,13 +18,16 @@ const HomeScreen = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const mostWatchedData = await fetchWithToken('/anime/ranking?ranking_type=bypopularity&limit=20');
+        setMostWatched(mostWatchedData.data || []);
+
         const rankingData = await fetchWithToken('/anime/ranking?limit=20');
-        setTopAnime(rankingData.data || []);
+        setTopRated(rankingData.data || []);
 
         const movieData = await fetchWithToken('/anime/ranking?ranking_type=movie&limit=20');
         setTopMovies(movieData.data || []);
 
-        const seasonalData = await fetchWithToken(`/anime/season/${year}/${season.toLowerCase()}?sort=anime_num_list_users&limit=20`);
+        const seasonalData = await fetchWithToken(`/anime/ranking?ranking_type=airing&limit=20`);
         setSeasonalAnime(seasonalData.data || []);
 
         const suggestionsData = await fetchWithToken('/anime/suggestions?limit=20');
@@ -38,19 +43,17 @@ const HomeScreen = () => {
     fetchData();
   }, []);
 
+  const navigation = useNavigation();
+
   const renderAnimeCard = ({ item }) => (
     <View style={tw`w-28 px-2 py-1 mr-3`}>
-      <Image
-        source={{ uri: item.node.main_picture.medium }}
-        style={tw`w-24 h-36 rounded-lg`}
-      />
-      <Text
-        style={tw`mt-1 text-xs font-semibold text-center`}
-        numberOfLines={2}
-        ellipsizeMode="tail"
-      >
-        {item.node.title}
-      </Text>
+      <TouchableOpacity onPress={() => navigation.navigate('AnimeScreen', { animeId: item.node.id })}>
+        <Image
+          source={{ uri: item.node.main_picture.medium }}
+          style={tw`w-24 h-36 rounded-lg`}
+        />
+        <Text style={tw`mt-1 text-xs font-semibold text-center`} numberOfLines={2}>{item.node.title}</Text>
+      </TouchableOpacity>
     </View>
   );
 
@@ -77,9 +80,10 @@ const HomeScreen = () => {
   }
 
   return (
-    <ScrollView style={tw`flex-1 bg-gray-50`} contentContainerStyle={tw`pb-25 pt-3`}>
-      {renderHorizontalList(`${season} ${year}`, seasonalAnime)} 
-      {renderHorizontalList('Top Anime', topAnime)}
+    <ScrollView style={tw`flex-1 bg-gray-50`} contentContainerStyle={tw`pb-25 pt-3`} showsVerticalScrollIndicator={false}>
+      {renderHorizontalList(`${season} ${year}`, seasonalAnime)}
+      {renderHorizontalList('Most Watched', mostWatched)}
+      {renderHorizontalList('Top Rated', topRated)}
       {renderHorizontalList('Top Movies', topMovies)}
       {renderHorizontalList('Suggestions', suggestions)}
     </ScrollView>

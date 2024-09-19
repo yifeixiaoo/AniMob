@@ -1,13 +1,16 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import { Feather } from '@expo/vector-icons';
 import HomeScreen from '../screens/HomeScreen';
 import SearchScreen from '../screens/SearchScreen';
+import AnimeScreen from '../screens/AnimeScreen'; // Import AnimeScreen
 import { HeaderTitle } from '../config';
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
-const NavBar = () => {
+const TabNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -54,6 +57,26 @@ const NavBar = () => {
         }}
       />
     </Tab.Navigator>
+  );
+};
+
+const NavBar = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Main"
+        component={TabNavigator}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="AnimeScreen"
+        component={AnimeScreen}
+        options={{
+          headerTitle: 'Anime Details',
+          headerBackTitle: 'Back',
+        }}
+      />
+    </Stack.Navigator>
   );
 };
 
