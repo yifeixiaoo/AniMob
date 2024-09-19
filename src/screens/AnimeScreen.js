@@ -98,7 +98,7 @@ const AnimeScreen = ({ route }) => {
                                     numberOfLines={1}
                                     ellipsizeMode="tail"
                                 >
-                                    {animeDetails.mean || 'N/A'}
+                                    {animeDetails.mean + "/10"|| 'N/A'}
                                 </Text>
                                 <Text
                                     style={tw`text-base text-gray-800 mb-1`}
