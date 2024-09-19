@@ -52,7 +52,7 @@ const AnimeScreen = ({ route }) => {
                     <ScrollView horizontal showsHorizontalScrollIndicator={false} style={tw`my-4`}>
                         {animeDetails.genres && animeDetails.genres.map((genre, index) => (
                             <View key={index} style={tw`bg-blue-200 rounded-full px-3 py-1 mr-2`}>
-                                <Text style={tw`text-base font-semibold text-blue-800`}>{formatString(genre.name)}</Text>
+                                <Text style={tw`text-base font-semibold text-blue-800`}>{genre.name}</Text>
                             </View>
                         ))}
                     </ScrollView>
@@ -125,12 +125,12 @@ const AnimeScreen = ({ route }) => {
                                 <ScrollView horizontal showsHorizontalScrollIndicator={false} style={tw``}>
                                     {alternative_titles.synonyms?.map((synonym, index) => (
                                         <View key={index} style={tw`bg-green-200 rounded-full px-3 py-1 mr-2`}>
-                                            <Text style={tw`text-base font-semibold text-green-800`}>{formatString(synonym)}</Text>
+                                            <Text style={tw`text-base font-semibold text-green-800`}>{synonym}</Text>
                                         </View>
                                     ))}
                                     {alternative_titles.en && (
                                         <View style={tw`bg-red-200 rounded-full px-3 py-1 mr-2`}>
-                                            <Text style={tw`text-base font-semibold text-red-800`}>{formatString(alternative_titles.en)}</Text>
+                                            <Text style={tw`text-base font-semibold text-red-800`}>{alternative_titles.en}</Text>
                                         </View>
                                     )}
                                     {alternative_titles.ja && (
