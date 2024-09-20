@@ -57,7 +57,7 @@ const AnimeScreen = ({ route }) => {
                         ))}
                     </ScrollView>
 
-                    <View style={tw`bg-gray-100 rounded-lg p-4 mb-4`}>
+                    <View style={tw`bg-gray-100 rounded-lg p-4 mb-8`}>
                         {/* Left-Right Fields and Details */}
                         <View style={tw`flex-row justify-between items-start`}>
                             {/* Left side: Fields */}
