@@ -57,7 +57,7 @@ const SearchScreen = () => {
   return (
     <View style={tw`flex-1 bg-gray-50`}>
       <View style={tw`absolute top-3 left-5 right-5 z-10`}>
-        <View style={tw`bg-white shadow-lg rounded-3xl p-1`}>
+        <View style={tw`bg-white border border-gray-300 rounded-3xl p-1`}>
           <View style={tw`flex-row items-center bg-white rounded-3xl p-2`}>
             <Feather name="search" color={"gray"} size={24} />
             <TextInput
@@ -81,7 +81,7 @@ const SearchScreen = () => {
             data={searchResults}
             keyExtractor={(item) => item.node.id.toString()}
             renderItem={renderAnimeCard}
-            contentContainerStyle={tw`pt-1 pb-40`}
+            contentContainerStyle={tw`pt-4 pb-40`}
             style={tw`pt-19`}
             showsVerticalScrollIndicator={false}
           />

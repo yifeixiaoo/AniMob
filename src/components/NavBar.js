@@ -1,11 +1,11 @@
-import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
-import { Feather } from '@expo/vector-icons';
-import HomeScreen from '../screens/HomeScreen';
-import SearchScreen from '../screens/SearchScreen';
-import AnimeScreen from '../screens/AnimeScreen'; // Import AnimeScreen
-import { HeaderTitle } from '../config';
+import React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
+import { Feather } from "@expo/vector-icons";
+import HomeScreen from "../screens/HomeScreen";
+import SearchScreen from "../screens/SearchScreen";
+import AnimeScreen from "../screens/AnimeScreen"; // Import AnimeScreen
+import { HeaderTitle } from "../config";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -15,24 +15,24 @@ const TabNavigator = () => {
     <Tab.Navigator
       screenOptions={{
         tabBarStyle: {
-          position: 'absolute',
+          position: "absolute",
           bottom: 20,
           left: 20,
           right: 20,
           borderRadius: 30,
           height: 60,
-          backgroundColor: 'white',
-          shadowColor: '#000',
-          shadowOffset: { width: 0, height: 10 },
-          shadowOpacity: 0.1,
-          shadowRadius: 3.5,
-          elevation: 5,
+          backgroundColor: "white",
+          borderWidth: 1,
+          borderColor: "#D1D5DB",
+        },
+        tabBarIconStyle: {
+          marginTop: 10,
         },
         tabBarShowLabel: false,
-        headerTitleAlign: 'center',
+        headerTitleAlign: "center",
         headerTitleStyle: {
           fontSize: 24,
-          fontWeight: 'bold',
+          fontWeight: "bold",
         },
       }}
     >
@@ -42,7 +42,12 @@ const TabNavigator = () => {
         options={{
           headerTitle: HeaderTitle,
           tabBarIcon: ({ color, size }) => (
-            <Feather name="home" color={color} size={size} />
+            <Feather
+              name="home"
+              color={color}
+              size={size}
+              style={{ marginBottom: -2 }}
+            />
           ),
         }}
       />
@@ -52,7 +57,12 @@ const TabNavigator = () => {
         options={{
           headerTitle: HeaderTitle,
           tabBarIcon: ({ color, size }) => (
-            <Feather name="search" color={color} size={size} />
+            <Feather
+              name="search"
+              color={color}
+              size={size}
+              style={{ marginBottom: -4 }}
+            />
           ),
         }}
       />
@@ -72,13 +82,12 @@ const NavBar = () => {
         name="AnimeScreen"
         component={AnimeScreen}
         options={({ route }) => ({
-          headerTitle: route.params?.animeTitle || 'Anime Details',
-          headerBackTitle: 'Back',
+          headerTitle: route.params?.animeTitle || "Anime Details",
+          headerBackTitle: "Back",
         })}
       />
     </Stack.Navigator>
   );
 };
-
 
 export default NavBar;
