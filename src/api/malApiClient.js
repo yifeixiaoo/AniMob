@@ -30,11 +30,10 @@ export const getMalAccessToken = async () => {
 
 const fetchWithToken = async (endpoint, options = {}) => {
   try {
-    let token = await AsyncStorage.getItem('token');
+    let token = await getMalAccessToken();
     if (!token) {
       token = await getMalAccessToken();
     }
-
     const response = await fetch(`${malApiURI}${endpoint}`, {
       ...options,
       headers: {
